@@ -1,3 +1,8 @@
+// 
+// I leave anyone that find this useful the ultimate freedom of using, changing, alter, missuse as they please
+// I don't promise it will work, neither do I promise that your equipment will work after trying it.
+// 
+
 #include "esp_camera.h"
 #include <FS.h>
 #include "SD_MMC.h"
