@@ -1,7 +1,7 @@
 What you need is an ESP32-CAM (AI Thinker compatible for this specific project)
 An FTDI programmer.
 A motion detector, I used one from AZ-Delivery (https://www.az-delivery.de/en/products/bewegungsmelde-modul)
-I found those ones reliable. (Not cheap though)
+I found those ones reliable. (Not the cheapest on the market though but in my opinion the best)
 I presume you are somewhat familiar with how to connect an ESP32 to a FTDI programmer. If not this is a quick way.
 Programming mode:
 FTDI -> ESP
@@ -13,8 +13,7 @@ GND -> GND
 On ESP32-CAM
 IO0 -> GND Lock in programming mode
 RST -> so it is ready for use Just a quick touch so you see on a serial monitor that it is ready for programming.
-Image
-(I used this as a reference but I couldn't use the code, except for the one that is for the camera and that is all over the Internet. )
+
 Upload the code.
 Remove IO0 from GND and a quick reset then it should be running.
 
