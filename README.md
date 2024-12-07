@@ -3,7 +3,7 @@ A FTDI programmer.
 A motion detector, I used one from AZ-Delivery (https://www.az-delivery.de/en/products/bewegungsmelde-modul)
 I found those ones reliable. (Not the cheapest on the market though but in my opinion the best)
 I presume you are somewhat familiar with how to connect an ESP32 to a FTDI programmer. If not this is a quick way.
-Programming mode:
+Programming mode:<br>
 FTDI -> ESP <br>
 RX -> TX<br>
 TX -> RX<br>
