@@ -24,16 +24,15 @@
 #define HREF_GPIO_NUM 23
 #define PCLK_GPIO_NUM 22
 #define motionPin 3
-const char* ssid = "HALLEN01";
-const char* password = "lomi6074";
+const char* ssid = "YourAPHere"; // Note!! This is where you put your AP
+const char* password = "YourPWDHere";// Note!! This is where you put your PWD! 
 
-AsyncWebServer server(80);
-String fileNames[520]; // Förvara filnamnen i en array
-int fileCount = 0; // Räknare för antalet filer
-
+AsyncWebServer server(80); // If this address doesn't fit you, by all means chose another! But you have to remeber the port to be able to check on the pictures!
+String fileNames[520]; // Just so I can keep the file names in an array
+int fileCount = 0; // Counter is a counter is a counter. 
+// All this you can find everywhere, I was a bit stupid and spent hours on reading when it was readily available on all places.
 void configCamera() {
   camera_config_t config;
-
   config.ledc_channel = LEDC_CHANNEL_0;
   config.ledc_timer = LEDC_TIMER_0;
   config.pin_d0 = Y2_GPIO_NUM;
@@ -92,7 +91,7 @@ unsigned int incCounter() {
   fileCount = 0;
   return cnt;
 }
-
+//Found this on the Internet I haven't got a clue what it does but it seems important to use?? Why?? More reading to do!
 void skipPictures(int n) {
   for(int i=0; i<n; i++) {
     camera_fb_t* fb = esp_camera_fb_get();
@@ -101,7 +100,6 @@ void skipPictures(int n) {
 }
 
 void takePicture() {
-  
   camera_fb_t* fb = esp_camera_fb_get();
   unsigned int cnt = incCounter();
   String path = "/img" + String(cnt) + ".jpg";
@@ -120,12 +118,12 @@ void takePicture() {
   file.close();
   esp_camera_fb_return(fb);
   delay(100);
-  updateFileList();
+  updateFileList();// Update the list so that the webpage is up to date
   delay(500);
 }
 
 void setupWiFi(){
-  WiFi.persistent(false); 
+  WiFi.persistent(false); // Not really needed but I forgot to remove it so it just as well stay. (was testing with another webserver library that needed it)
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   WiFi.setSleep(false);
@@ -133,13 +131,13 @@ void setupWiFi(){
     delay(500);
     Serial.print(".");
   }
-  Serial.println("Kopplad mot nätet");
-  Serial.print("Adress: ");
-  Serial.println(WiFi.localIP());
+  Serial.println("Kopplad mot nätet"); //Connected
+  Serial.print("Adress: ");// Your address to connect to the server
+  Serial.println(WiFi.localIP());//The numbers!
 }
 void setupCardReader() {
   if (!SD_MMC.begin()) {
-    Serial.println("\nKortfel!");
+    Serial.println("\nKortfel!");// Something wrong
     return;
   }
   Serial.println("\nKort initialiserat");
