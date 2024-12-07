@@ -52,4 +52,4 @@ EEPROM.commit(); // Write changes to the EEPROM.<br>
 Serial.println("Counter is at 0.");<br>
 }<br>
 Since I might need the old files they are moved to another Directory on the SD-Card. This process is rather straight forward and is full in the complete code. (Function moveJpgToOldPictures ):<br>
-Question? Ask me I don't promise I will be able to answer but I'll try.
+Question? Ask me! I don't promise I will be able to answer but I'll try.
