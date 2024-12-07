@@ -230,8 +230,8 @@ void setup() {
   server.on("/", HTTP_GET, [](AsyncWebServerRequest* request) {
     Serial.println("/");
     Serial.println(request->url());
-    String html = "<html><head><meta http-equiv='refresh' content='15'>";
-      html += "</head><body><h1>Fil Lista:</h1><ul>";
+    String html = "<html><head><meta http-equiv='refresh' content='15'>";// I am not sure but if I remember correct this should update the 
+    html += "</head><body><h1>Fil Lista:</h1><ul>";                      // browser once every 15 seconds. 
     for (int i = 0; i < fileCount; i++) {
       html += "<li><a href='/";
       html += fileNames[i].substring(fileNames[i].lastIndexOf('/') + 1); // Endast filnamn
@@ -249,14 +249,14 @@ void setup() {
     Serial.println(filePath);
     File file = SD_MMC.open(filePath);
     if (file) {
-      request->send(SD_MMC, filePath, "image/jpeg"); // Skicka filen
+      request->send(SD_MMC, filePath, "image/jpeg"); // Skicka filen / Sending file
     } else {
-      request->send(404, "text/plain", "Filen hittades inte");
+      request->send(404, "text/plain", "Filen hittades inte"); // Not found
     }
     file.close();
   });
   server.begin();
-  Serial.print("IP adress: " );
+  Serial.print("IP adress: " ); // Once more just for fun!
   Serial.println(WiFi.localIP());
 }
 
@@ -264,12 +264,12 @@ void loop() {
   int reading = digitalRead(motionPin);
   //Serial.println(reading);
   if (reading == HIGH){
-    //Serial.println("Hög");
+    //Serial.println("Hög"); // only used when testing
     takePicture();
-    delay(2000);
+    delay(2000); // Shorten this or make it longer up to you. But I recomend a delay of at least 1 second. Looks like it takes some time for the camera to save the file.
   }
   /*if (reading == LOW){
-    //Serial.println("Låg");
+    //Serial.println("Låg"); // only used when testing
   }*/
-  delay(1000);
+  delay(1000); // Reapete once a second. Adjust to your liking.
 }
