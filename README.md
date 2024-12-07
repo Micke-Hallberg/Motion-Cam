@@ -39,17 +39,18 @@ The libraries portion looks like this:<br>
 #include <WiFi.h><br>
 #include <AsyncTCP.h><br>
 #include <ESPAsyncWebServer.h><br>
-I use the EEPROM to keep count of the filenames. img1.jpg and so on and this line : EEPROM.begin(9); sets it to a 9 bits counter.<br>
-I don't want to many pictures in the root. or "/" for those that isn't used to the root. I try to have as much as possible in functions because I find it a lot easier to mess around with the code then. <br>
+I use the EEPROM to keep count of the filenames. img1.jpg and so on and this line : EEPROM.begin(9); sets it to a 9 bits counter (max 512).<br>
+I don't want to many pictures in the root. or "/" for those that isn't used to the root.<br>
+I try to have as much as possible in functions because I find it a lot easier to mess around with the code then. <br>
 So the initialization of the SD-card is done in one and the reading of the files in another and the moving of the files when the counter hits 511 in yet another.<br>
-
-To reset the EEPROM counter to 0 I use a simple call to a function
+<br>
+To reset the EEPROM counter to 0 I use a simple call to a function:<br><br>
 void resetEEPROM(){<br>
 unsigned int resetValue = 0;<br>
 EEPROM.put(0, resetValue);<br>
 EEPROM.commit(); // Write changes to the EEPROM.<br>
 
 Serial.println("Counter is at 0.");<br>
-}<br>
+}<br><br>
 Since I might need the old files they are moved to another Directory on the SD-Card. This process is rather straight forward and is full in the complete code. (Function moveJpgToOldPictures ):<br>
 Question? Ask me! I don't promise I will be able to answer but I'll try.
